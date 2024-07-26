@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Finances</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_transactions">Transactions</string>
+    <string name="current_balance">Saldo atual</string>
+    <string name="income">Receitas</string>
+    <string name="expenses">Despesas</string>
+    <string name="title_screen_transactions">Receitas e Despesas</string>
+    <string name="new_transaction">Nova Transação</string>
+    <string name="accounts">Contas</string>
+    <string name="no_accounts">Parece que você ainda não tem nenhuma conta cadastrada, clique aqui para criar uma nova conta</string>
+    <string name="new_account">Adicionar Nova Conta</string>
+    <string name="default_value">R$ 0,00</string>
+</resources>
