@@ -20,7 +20,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val currentValue: LiveData<Double> = _currentValue
 
     fun loadData() {
-        val list = accountRepository.list()
+
+        val list = accountRepository.listAccounts()
         _listAccounts.value = list
 
         var value = 0.0

@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "account")
-class AccountModel {
+open class AccountModel {
     @PrimaryKey
     @ColumnInfo("id")
     var id: Int? = null

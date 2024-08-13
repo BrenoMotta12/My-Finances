@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@drawable/background_default_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="20dp">
 
     <TextView
         android:id="@+id/text_date_transaction"
@@ -12,9 +13,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_name_transaction"
+        app:layout_constraintBottom_toTopOf="@id/image_type_transaction"
         android:text="dd/MM/yyy"
         android:textSize="14dp"/>
+    <View
+        android:id="@+id/view_line_row_transaction"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_date_transaction"
+        android:background="@color/grey_700"
+        android:layout_marginTop="2dp"
+        android:layout_marginHorizontal="20dp"
+        />
 
     <ImageView
         android:id="@+id/image_type_transaction"
@@ -24,18 +36,27 @@
         app:layout_constraintTop_toBottomOf="@+id/text_date_transaction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="10dp"/>
 
     <TextView
-        android:id="@+id/text_name_transaction"
+        android:id="@+id/text_name_transaction_row_transaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/image_type_transaction"
-        app:layout_constraintTop_toBottomOf="@+id/text_date_transaction"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_type_transaction"
         android:text="titulo da transação"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/text_name_account_row_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/image_type_transaction"
+        app:layout_constraintBottom_toBottomOf="@id/image_type_transaction"
+        android:text="titulo da conta"
+        android:layout_marginStart="10dp"
+        android:textSize="14sp"/>
 
     <TextView
         android:id="@+id/text_value_transaction"
@@ -45,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_date_transaction"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="R$0,00"
-        android:paddingEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:textStyle="bold"
         android:textSize="18sp"/>
 

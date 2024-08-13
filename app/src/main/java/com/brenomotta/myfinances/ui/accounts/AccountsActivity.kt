@@ -1,6 +1,6 @@
 package com.brenomotta.myfinances.ui.accounts
 
-import ModalAccount
+import com.brenomotta.myfinances.ui.modal.ModalAccount
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,6 +47,14 @@ class AccountsActivity : AppCompatActivity(), View.OnClickListener {
         })
 
         viewModel.loadData()
+
+        /**
+         * Ao criar a tela, se não houver nenhuma conta no banco de dados, o sistema abre diretamente
+         * a tela para cadastrar uma nova conta
+         * */
+        if (viewModel.listAccount.value?.isEmpty() == true) {
+            openModal()
+        }
 
         setContentView(binding.root)
     }
@@ -95,6 +103,7 @@ class AccountsActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.listAccount.observe(this) {
             adapter.updateTransactions(it)
         }
+        viewModel
     }
 }
 

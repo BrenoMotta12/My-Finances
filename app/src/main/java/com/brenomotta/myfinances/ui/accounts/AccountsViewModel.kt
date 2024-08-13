@@ -16,11 +16,14 @@ class AccountsViewModel(application: Application) : AndroidViewModel(application
     val listAccount: LiveData<List<AccountModel>> = _listAccounts
 
     fun loadData() {
-        _listAccounts.value = accountRepository.list()
+        _listAccounts.value = accountRepository.listAccounts()
     }
 
     fun save(accountModel: AccountModel) {
-        accountRepository.create(accountModel)
+        if (accountModel.id == null) {
+            accountRepository.create(accountModel)
+        } else
+            accountRepository.update(accountModel)
     }
 
     fun deleteAccount(id: Int) {

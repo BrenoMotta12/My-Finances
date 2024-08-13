@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="bottom"
     android:background="@drawable/background_default_white">
 
     <TextView
@@ -24,8 +23,10 @@
         android:layout_height="wrap_content"
         android:hint="Descrição"
         android:textSize="16sp"
+        android:inputType="textImeMultiLine"
         android:layout_marginTop="8dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        />
 
     <EditText
         android:id="@+id/edit_account_value"
@@ -39,9 +40,9 @@
         android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/button_close_modal_new_account"
+        android:id="@+id/button_save_modal_new_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
+        android:text="@string/save"
         android:layout_marginTop="16dp" />
 </LinearLayout>

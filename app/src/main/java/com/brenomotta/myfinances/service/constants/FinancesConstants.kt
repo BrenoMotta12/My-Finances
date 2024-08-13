@@ -6,9 +6,18 @@ class FinancesConstants {
         const val EXPENSES = "despesa"
     }
     object RECURRENCE {
-        const val MONTHLY = "mensal"
-        const val WEEKLY = "semanal"
-        const val DAILY = "diario"
-        const val EVERY_WORK_DAY = "dia util"
+        const val MONTHLY = "0"
+        const val WEEKLY = "1"
+        const val DAILY = "2"
+        const val ANNUAL = "3"
     }
+    object BUNDLE {
+        const val DESCRIPTION = "description"
+        const val ID = "id"
+    }
+
+    object DATE {
+        const val DATE_FORMAT = "dd/MM/yyyy"
+    }
+
 }

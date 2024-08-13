@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navView.setOnItemSelectedListener {
-            when (it.itemId) { R.id.navigation_home -> navController.navigate(R.id.navigation_home)
+            when (it.itemId) {
+                R.id.navigation_home -> navController.navigate(R.id.navigation_home)
                 R.id.navigation_transactions -> navController.navigate(R.id.navigation_transactions)
                 R.id.navigation_dashboard -> navController.navigate(R.id.navigation_dashboard)
             }

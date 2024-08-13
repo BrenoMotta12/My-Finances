@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.transactions.TransactionFormActivity"
+    android:background="@color/grey_100"
+    >
+
+    <TextView
+        android:id="@+id/text_button_income_screen_transaction_form"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_button_expense_screen_transaction_form"
+        android:text="@string/income"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/text_button_expense_screen_transaction_form"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_button_income_screen_transaction_form"
+        android:text="@string/expense"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+    <View
+        android:id="@+id/view_line_income"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/view_line_expense"
+        app:layout_constraintTop_toBottomOf="@id/text_button_income_screen_transaction_form" />
+    />
+    <View
+        android:id="@+id/view_line_expense"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/grey_700"
+        app:layout_constraintStart_toEndOf="@id/view_line_income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_button_income_screen_transaction_form" />
+    />
+
+    <EditText
+        android:id="@+id/edit_description_transaction_screen_transaction_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_button_income_screen_transaction_form"
+        android:hint="@string/description"
+        android:inputType="textImeMultiLine"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/edit_value_transaction_screen_transaction_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/edit_description_transaction_screen_transaction_form"
+        android:hint="@string/default_value"
+        android:layout_marginHorizontal="20dp"
+        android:textSize="18sp"/>
+
+
+    <Button
+        android:id="@+id/button_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:hint="@string/clique_para_selecionar_a_data"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/edit_value_transaction_screen_transaction_form"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/text_recurrence_screen_transaction_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/recurrence_of_transaction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spinner_recurrence_screen_transaction_form"
+        app:layout_constraintBottom_toBottomOf="@id/spinner_recurrence_screen_transaction_form"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        />
+
+
+    <Spinner
+        android:id="@+id/spinner_recurrence_screen_transaction_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/button_date"
+        app:layout_constraintStart_toEndOf="@id/text_recurrence_screen_transaction_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/text_account_of_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/account_transaction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_recurrence_screen_transaction_form"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:paddingTop="20dp"
+        />
+
+    <View
+        android:id="@+id/view_account_screen_transaction_form"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_account_of_transaction"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/background_default_white"
+
+        />
+
+
+
+    <ImageView
+        android:id="@+id/image_account_screen_transaction"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/view_account_screen_transaction_form"
+        app:layout_constraintTop_toTopOf="@id/view_account_screen_transaction_form"
+        app:layout_constraintBottom_toBottomOf="@id/view_account_screen_transaction_form"
+        android:src="@drawable/ic_default_account"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/text_account_description_screen_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/image_account_screen_transaction"
+        app:layout_constraintBottom_toBottomOf="@id/image_account_screen_transaction"
+        app:layout_constraintStart_toEndOf="@id/image_account_screen_transaction"
+        android:text="Texto padrão"
+        android:paddingStart="10dp"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/button_save_screen_transaction_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

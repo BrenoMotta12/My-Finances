@@ -7,6 +7,7 @@ import com.brenomotta.myfinances.R
 import com.brenomotta.myfinances.databinding.RowAccountBinding
 import com.brenomotta.myfinances.service.listener.RecyclerListener
 import com.brenomotta.myfinances.service.model.AccountModel
+import com.brenomotta.myfinances.service.util.FinancesFormatter
 
 class AccountViewHolder(
     private val itemBinding: RowAccountBinding,
@@ -16,7 +17,7 @@ class AccountViewHolder(
     fun bindData(account: AccountModel) {
 
         itemBinding.textRowAccount.text = account.description
-        itemBinding.textValueRowAccount.text = "R$ " + "%.2f".format(account.value)
+        itemBinding.textValueRowAccount.text = FinancesFormatter.maskMonetaryValue(account.value)
 
         itemBinding.root.setOnClickListener(View.OnClickListener {
             listener.onListClick(account)
