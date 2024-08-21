@@ -1,5 +1,6 @@
 package com.brenomotta.myfinances.service.repository.local
 
+import android.provider.MediaStore.DownloadColumns
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -21,7 +22,17 @@ interface TransactionsDAO {
     fun listTransactions(): List<TransactionModel>
 
     @Query("SELECT * FROM transactions WHERE id = :id")
-    fun getTransaction(id: Int) : TransactionModel
+    fun getTransaction(id: Int): TransactionModel
+
+    @Query("SELECT cod_transaction FROM transactions")
+    fun listCodTransaction(): List<Int>
+
+    @Query("DELETE FROM transactions WHERE cod_transaction = :codTransaction")
+    fun deleteTransaction(codTransaction: Int)
+
+    @Query("UPDATE transactions SET value = :value, typeTransaction = :typeTransaction, description = :description, account_id = :accountId WHERE cod_transaction = :codTransaction")
+    fun updateTransaction(codTransaction: Int, value: Double, typeTransaction: String, description: String, accountId: Int
+    )
 
     /**
      *  Account Model
@@ -34,6 +45,9 @@ interface TransactionsDAO {
 
     @Query("SELECT * FROM account")
     fun listAccounts(): List<AccountModel>
+
+    @Query("SELECT * FROM account WHERE id = :id")
+    fun getAccount(id: Int): AccountModel
 
     @Query("DELETE FROM account WHERE id = :id")
     fun deleteAccount(id: Int)

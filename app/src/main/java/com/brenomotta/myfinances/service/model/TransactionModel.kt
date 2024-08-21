@@ -3,6 +3,7 @@ package com.brenomotta.myfinances.service.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.brenomotta.myfinances.service.constants.FinancesConstants
 import java.time.LocalDate
@@ -12,13 +13,13 @@ import java.time.LocalDate
         ForeignKey(
             entity = AccountModel::class,
             parentColumns = ["id"],
-            childColumns = ["accountId"],
+            childColumns = ["account_id"],
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE
         ), ForeignKey(
             entity = RecurrenceModel::class,
             parentColumns = ["id"],
-            childColumns = ["recurrenceId"],
+            childColumns = ["recurrence_id"],
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE
         )
@@ -29,6 +30,9 @@ class TransactionModel {
     @ColumnInfo("id")
     @PrimaryKey
     var id: Int? = 0
+
+    @ColumnInfo("cod_transaction")
+    var codTransaction: Int = 0
 
     @ColumnInfo("value")
     var value: Double = 0.0
@@ -42,11 +46,12 @@ class TransactionModel {
     @ColumnInfo("date")
     var dateOfMonth: String = ""
 
-    @ColumnInfo("recurrenceId")
+    @ColumnInfo("recurrence_id")
     var recurrenceId: Int = 0
 
-    @ColumnInfo("accountId")
+    @ColumnInfo("account_id")
     var accountId: Int = 0
 
+    @Ignore
     var accountName: String = ""
 }

@@ -13,7 +13,7 @@ import com.brenomotta.myfinances.service.util.FinancesFormatter
 
 @Database(
     entities = [TransactionModel::class, AccountModel::class, RecurrenceModel::class],
-    version = 1
+    version = 2
 )
 abstract class MyFinancesDataBase : RoomDatabase() {
 

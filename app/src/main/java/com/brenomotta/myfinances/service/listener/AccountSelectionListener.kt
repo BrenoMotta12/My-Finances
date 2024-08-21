@@ -5,5 +5,5 @@ import com.brenomotta.myfinances.service.model.AccountModel
 
 interface AccountSelectionListener {
 
-    fun onAccountSelected(account: AccountModel)
+    fun onAccountSelected(accountModel: AccountModel)
 }

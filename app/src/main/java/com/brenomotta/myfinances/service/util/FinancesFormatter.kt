@@ -20,7 +20,6 @@ class FinancesFormatter {
         private val localeBR = Locale("pt", "BR")
         private val currencyFormatter = NumberFormat.getCurrencyInstance(localeBR)
         private var dateFormat = SimpleDateFormat(FinancesConstants.DATE.DATE_FORMAT)
-        private val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
         fun intToDateString(year: Int, month: Int, dayOfMonth: Int): String  {
             val calendar = Calendar.getInstance()
@@ -28,14 +27,16 @@ class FinancesFormatter {
             return dateFormat.format(calendar.time)
         }
 
-        @TypeConverter
-        fun stringToDate(value: String?): LocalDate? {
-            return value?.let { LocalDate.parse(it, formatter) }
+        // Converte a data do banco de dados diretamente para um Local Date
+        fun toDate(dateString: String): LocalDate {
+            val formatter = DateTimeFormatter.ofPattern(FinancesConstants.DATE.DATE_FORMAT)
+            return LocalDate.parse(dateString, formatter)
         }
 
-        @TypeConverter
-        fun dateToString(date: LocalDate?): String? {
-            return date?.format(formatter)
+        // Converte Local date para String
+        fun toString(date: LocalDate): String {
+            val formatter = DateTimeFormatter.ofPattern(FinancesConstants.DATE.DATE_FORMAT)
+            return date.format(formatter)
         }
 
         // Transforma o valor formatado para visualização em um double
@@ -49,7 +50,7 @@ class FinancesFormatter {
             }
         }
 
-        // Formata um valor Double para a visualização do usuário
+        // Formata o editText para a visualização do usuário
         fun maskMonetaryValue(editText: EditText) {
             editText.addTextChangedListener(object : TextWatcher {
                 private var isEditing = false
@@ -77,22 +78,20 @@ class FinancesFormatter {
                     }
 
                     isEditing = false
+
                 }
             })
         }
 
 
         fun maskMonetaryValue(value: Double): String {
-            var cleanString = value.toString().replace(Regex("[R$,.]"), "").trim()
-
-            if (cleanString.isNotEmpty()) {
-                val parsed = cleanString.toDouble()
-
-                cleanString = currencyFormatter.format(parsed / 100)
-
-            }
-            return cleanString
+            // Cria um formatador para o Brasil
+            val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+            // Formata o valor e retorna como string
+            return numberFormat.format(value)
         }
 
     }
+
+
 }

@@ -25,4 +25,26 @@ class TransactionRepository(val context: Context) {
     fun listRecurrences(): List<RecurrenceModel> {
         return financesDataBase.listRecurrence()
     }
+
+    fun getTransaction(id: Int): TransactionModel {
+        return financesDataBase.getTransaction(id)
+    }
+
+    fun updateTransaction(transactionModel: TransactionModel) {
+        return financesDataBase.updateTransaction(
+            transactionModel.codTransaction,
+            transactionModel.value,
+            transactionModel.typeTransaction,
+            transactionModel.description,
+            transactionModel.accountId
+        )
+    }
+
+    fun delete(codTransaction: Int) {
+        financesDataBase.deleteTransaction(codTransaction)
+    }
+
+    fun listCodTransaction(): List<Int> {
+        return financesDataBase.listCodTransaction()
+    }
 }

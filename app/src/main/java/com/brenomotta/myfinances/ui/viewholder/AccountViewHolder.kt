@@ -20,7 +20,7 @@ class AccountViewHolder(
         itemBinding.textValueRowAccount.text = FinancesFormatter.maskMonetaryValue(account.value)
 
         itemBinding.root.setOnClickListener(View.OnClickListener {
-            listener.onListClick(account)
+            listener.onListClick(account.id!!)
         })
 
         itemBinding.root.setOnLongClickListener(View.OnLongClickListener {

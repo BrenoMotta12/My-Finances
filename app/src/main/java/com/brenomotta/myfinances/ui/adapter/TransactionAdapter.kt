@@ -8,7 +8,9 @@ import com.brenomotta.myfinances.databinding.RowTransactionBinding
 import com.brenomotta.myfinances.service.listener.RecyclerListener
 import com.brenomotta.myfinances.service.model.AccountModel
 import com.brenomotta.myfinances.service.model.TransactionModel
+import com.brenomotta.myfinances.service.util.FinancesFormatter
 import com.brenomotta.myfinances.ui.viewholder.TransactionViewHolder
+import java.util.Calendar
 
 class TransactionAdapter : RecyclerView.Adapter<TransactionViewHolder>() {
 
@@ -31,10 +33,15 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionViewHolder>() {
     }
 
     fun update(list: List<TransactionModel>) {
-        listTransaction = list
+
+        // Ordena a lista baseada na data
+        val mutableList: MutableList<TransactionModel> = list.toMutableList()
+
+        mutableList.sortByDescending { FinancesFormatter.toDate(it.dateOfMonth) }
+
+        listTransaction = mutableList
         notifyDataSetChanged()
     }
-
 
     fun attachListener(listener: RecyclerListener) {
         this.listener = listener

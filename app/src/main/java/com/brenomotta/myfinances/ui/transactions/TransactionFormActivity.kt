@@ -48,7 +48,23 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
         observe()
 
         supportActionBar?.hide()
+
         setContentView(binding.root)
+
+        handleExtras()
+    }
+
+
+    private fun handleExtras() {
+        /**
+         * Função que verifica se algum valor foi passado na chamada da intent,
+         * se sim, atribui os dados nos campos e faz as tratativas necessarias
+         * */
+        if (intent.extras?.getInt(FinancesConstants.BUNDLE.ID) != null) {
+            viewModel.getTransaction(intent.extras?.getInt(FinancesConstants.BUNDLE.ID)!!)
+        }
+
+
     }
 
     override fun onClick(v: View) {
@@ -64,7 +80,6 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
              * */
             R.id.text_button_income_screen_transaction_form -> {
                 setTypeTransactionSelected(FinancesConstants.TRANSACTIONS.INCOME)
-
             }
 
             R.id.text_button_expense_screen_transaction_form -> {
@@ -80,9 +95,7 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
                     viewModel.listAccounts.value ?: listOf(),
                     object : AccountSelectionListener {
                         override fun onAccountSelected(account: AccountModel) {
-                            binding.textAccountDescriptionScreenTransaction.text =
-                                account.description
-                            _accountId = account.id!!
+                            attachAccount(account)
                         }
                     })
                 modal.show()
@@ -93,9 +106,14 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
              * */
             R.id.button_save_screen_transaction_form -> {
                 handleSave()
-
             }
         }
+    }
+
+    private fun attachAccount(account: AccountModel) {
+        binding.textAccountDescriptionScreenTransaction.text =
+            account.description
+        _accountId = account.id!!
     }
 
     private fun setTypeTransactionSelected(type: String) {
@@ -125,6 +143,7 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
             this.typeTransaction = _typeTransaction
             this.description = binding.editDescriptionTransactionScreenTransactionForm.text.toString()
             this.value = value
+            this.codTransaction = viewModel.transaction.value?.codTransaction ?: 0
             this.accountId = _accountId
             this.dateOfMonth = binding.buttonDate.text.toString()
             this.recurrenceId = binding.spinnerRecurrenceScreenTransactionForm.selectedItemPosition
@@ -168,6 +187,7 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         DatePickerDialog(this, this, year, month, day).show()
+
     }
 
     private fun observe() {
@@ -181,12 +201,26 @@ class TransactionFormActivity : AppCompatActivity(), View.OnClickListener,
                 // Torna a primeira letra maiuscula e adiciona a palavra na lista
                 listRecurrences.add(i.description[0].uppercase() + i.description.substring(1))
             }
-
             binding.spinnerRecurrenceScreenTransactionForm.adapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
                 listRecurrences
             )
+
+        }
+        viewModel.transaction.observe(this) {
+            _transactionId = it.id
+            if (it.typeTransaction == FinancesConstants.TRANSACTIONS.EXPENSES) {
+                binding.textButtonExpenseScreenTransactionForm.performClick()
+            }
+            binding.editDescriptionTransactionScreenTransactionForm.setText(it.description)
+            binding.editValueTransactionScreenTransactionForm.setText(it.value.toString())
+            binding.buttonDate.text = it.dateOfMonth
+            binding.buttonDate.isEnabled = false
+            binding.buttonDate.setTextColor(getColor(R.color.grey_300))
+            binding.spinnerRecurrenceScreenTransactionForm.setSelection(it.recurrenceId)
+            binding.spinnerRecurrenceScreenTransactionForm.isEnabled = false
+            attachAccount(viewModel.getAccount(it.accountId))
         }
     }
 }

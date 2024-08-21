@@ -54,4 +54,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.0")
+
+    // Maskara
+    implementation("com.github.santalu:maskara:1.0.0")
 }

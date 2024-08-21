@@ -1,6 +1,8 @@
 package com.brenomotta.myfinances.ui.viewholder
 
+import android.app.AlertDialog
 import android.content.Context
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.brenomotta.myfinances.R
 import com.brenomotta.myfinances.databinding.RowTransactionBinding
@@ -22,6 +24,26 @@ class TransactionViewHolder(
         itemBinding.textValueTransaction.text = FinancesFormatter.maskMonetaryValue(transaction.value)
         itemBinding.textNameAccountRowTransaction.text = transaction.accountName
         itemBinding.textDateTransaction.text =  transaction.dateOfMonth
+
+
+        // click de deleção
+        itemBinding.root.setOnLongClickListener(View.OnLongClickListener {
+            AlertDialog.Builder(itemView.context)
+                .setTitle("Exclusão de Conta")
+                .setMessage("Deseja excluir a transação \"${transaction.description}\" ?")
+                .setPositiveButton("Sim") { dialog, which ->
+                    listener.onDeleteClick(transaction.codTransaction)
+                }
+                .setNeutralButton("Cancelar", null)
+                .show()
+
+            true
+        })
+
+        // Click de edição
+        itemBinding.root.setOnClickListener(View.OnClickListener {
+            listener.onListClick(transaction.id!!)
+        })
     }
 
     private fun handleTypeTransaction(transaction: TransactionModel) {

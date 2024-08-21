@@ -26,6 +26,10 @@ class AccountsViewModel(application: Application) : AndroidViewModel(application
             accountRepository.update(accountModel)
     }
 
+    fun getAccount(id: Int): AccountModel {
+        return accountRepository.getAccount(id)
+    }
+
     fun deleteAccount(id: Int) {
         accountRepository.delete(id)
     }

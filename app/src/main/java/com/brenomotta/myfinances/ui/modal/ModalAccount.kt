@@ -12,8 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class ModalAccount(
     context: Context,
-    private val account: AccountModel?,
-    private val viewModel: AccountsViewModel
+    private val viewModel: AccountsViewModel,
+    private val id: Int? = null
 ) : BaseModal(context) {
 
     private lateinit var binding: ModalAccountLayoutBinding
@@ -36,7 +36,8 @@ class ModalAccount(
         // Adicionar TextWatcher para formatar o EditText
         FinancesFormatter.maskMonetaryValue(binding.editAccountValue)
 
-        if (account != null) {
+        if (id != null) {
+            val account = viewModel.getAccount(id)
             binding.modalTitle.text = "Editar Conta"
             binding.editAccountDescription.setText(account.description)
             binding.editAccountValue.setText(account.value.toString())
@@ -63,11 +64,11 @@ class ModalAccount(
             return
         }
 
-        val account: AccountModel = AccountModel().apply {
-            this.id = account?.id
-            this.description = binding.editAccountDescription.text.toString()
-            this.value = FinancesFormatter.monetaryToDouble(binding.editAccountValue.text.toString())
-        }
+        val account = AccountModel()
+        account.id = id
+        account.description = binding.editAccountDescription.text.toString()
+        account.value = FinancesFormatter.monetaryToDouble(binding.editAccountValue.text.toString())
+
         viewModel.save(account)
         dismiss()
     }

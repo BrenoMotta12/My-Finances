@@ -43,7 +43,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         observer()
 
         accountAdapter.attachListener(object : RecyclerListener {
-            override fun onListClick(accountModel: AccountModel) {}
+            override fun onListClick(id: Int) {}
 
             override fun onDeleteClick(id: Int) {
                 viewModel.deleteAccount(id)

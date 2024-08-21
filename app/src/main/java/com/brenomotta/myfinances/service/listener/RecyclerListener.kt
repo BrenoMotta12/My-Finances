@@ -7,7 +7,8 @@ interface RecyclerListener {
     /**
      * Edição
      */
-    fun onListClick(accountModel: AccountModel)
+    fun onListClick(id: Int)
+
 
     /**
      * Remoção

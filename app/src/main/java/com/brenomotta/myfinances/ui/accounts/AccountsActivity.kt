@@ -35,8 +35,10 @@ class AccountsActivity : AppCompatActivity(), View.OnClickListener {
         observer()
 
         adapter.attachListener(object : RecyclerListener {
-            override fun onListClick(accountModel: AccountModel) {
-                openModal(accountModel)
+
+
+            override fun onListClick(id: Int) {
+                openModal(id)
             }
 
             override fun onDeleteClick(id: Int) {
@@ -73,11 +75,11 @@ class AccountsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     // Chamada caso seja uma edição de conta
-    private fun openModal(account: AccountModel?) {
+    private fun openModal(id: Int) {
         val modal = ModalAccount(
             this,
-            account,
-            viewModel
+            viewModel,
+            id
         )
         modal.setOnDismissListener {
             viewModel.loadData()
@@ -89,7 +91,6 @@ class AccountsActivity : AppCompatActivity(), View.OnClickListener {
     private fun openModal() {
         val modal = ModalAccount(
             this,
-            null,
             viewModel
         )
         modal.setOnDismissListener {

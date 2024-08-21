@@ -22,6 +22,10 @@ class AccountRepository(val context: Context) {
         return financesDataBase.listAccounts()
     }
 
+    fun getAccount(id: Int): AccountModel {
+        return financesDataBase.getAccount(id)
+    }
+
     fun delete(id: Int) {
         financesDataBase.deleteAccount(id)
     }

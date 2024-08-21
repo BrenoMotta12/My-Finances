@@ -36,9 +36,11 @@ class ModalSelectAccount(
         }
 
         adapter.updateTransactions(accounts)
+
         adapter.attachListener(object : RecyclerListener {
-            override fun onListClick(accountModel: AccountModel) {
-                listener.onAccountSelected(accountModel)
+            override fun onListClick(id: Int) {
+
+                listener.onAccountSelected(accounts.filter{ it.id == id }[0])
                 dismiss()
             }
 

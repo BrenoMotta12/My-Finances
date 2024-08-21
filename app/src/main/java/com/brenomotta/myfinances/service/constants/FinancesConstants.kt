@@ -6,10 +6,11 @@ class FinancesConstants {
         const val EXPENSES = "despesa"
     }
     object RECURRENCE {
-        const val MONTHLY = "0"
-        const val WEEKLY = "1"
-        const val DAILY = "2"
-        const val ANNUAL = "3"
+        const val NONE = 0
+        const val DAILY = 1
+        const val WEEKLY = 2
+        const val MONTHLY = 3
+        const val ANNUAL = 4
     }
     object BUNDLE {
         const val DESCRIPTION = "description"

@@ -20,11 +20,19 @@
     <string name="account_transaction">Conta da transação</string>
     <string name="save">Salvar</string>
 
-    <string-array name="spinner_recurrence_transaction">
-        <item>Nenhuma</item>
-        <item>Diária</item>
-        <item>Semanal</item>
-        <item>Mensal</item>
-        <item>Anual</item>
+    <string-array name="spinner_month">
+        <item>JANEIRO</item>
+        <item>FEVEREIRO</item>
+        <item>MARÇO</item>
+        <item>ABRIL</item>
+        <item>MAIO</item>
+        <item>JUNHO</item>
+        <item>JULHO</item>
+        <item>AGOSTO</item>
+        <item>SETEMBRO</item>
+        <item>OUTUBRO</item>
+        <item>NOVEMBRO</item>
+        <item>DEZEMBRO</item>
     </string-array>
+
 </resources>

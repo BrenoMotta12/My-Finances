@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/image_type_transaction"
         android:text="dd/MM/yyy"
-        android:textSize="14dp"/>
+        android:textSize="14sp"/>
     <View
         android:id="@+id/view_line_row_transaction"
         android:layout_width="0dp"
