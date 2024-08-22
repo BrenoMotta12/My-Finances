@@ -29,7 +29,7 @@ class TransactionViewHolder(
         // click de deleção
         itemBinding.root.setOnLongClickListener(View.OnLongClickListener {
             AlertDialog.Builder(itemView.context)
-                .setTitle("Exclusão de Conta")
+                .setTitle("Exclusão de Transação")
                 .setMessage("Deseja excluir a transação \"${transaction.description}\" ?")
                 .setPositiveButton("Sim") { dialog, which ->
                     listener.onDeleteClick(transaction.codTransaction)

@@ -1,18 +1,19 @@
 package com.brenomotta.myfinances.service.util
 
-import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import androidx.annotation.RequiresApi
-import androidx.room.TypeConverter
 import com.brenomotta.myfinances.service.constants.FinancesConstants
+import java.lang.ref.WeakReference
+import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
+
 
 class FinancesFormatter {
 
@@ -21,7 +22,7 @@ class FinancesFormatter {
         private val currencyFormatter = NumberFormat.getCurrencyInstance(localeBR)
         private var dateFormat = SimpleDateFormat(FinancesConstants.DATE.DATE_FORMAT)
 
-        fun intToDateString(year: Int, month: Int, dayOfMonth: Int): String  {
+        fun intToDateString(year: Int, month: Int, dayOfMonth: Int): String {
             val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
             return dateFormat.format(calendar.time)
@@ -50,19 +51,27 @@ class FinancesFormatter {
             }
         }
 
-        // Formata o editText para a visualização do usuário
+        //         Formata o editText para a visualização do usuário
         fun maskMonetaryValue(editText: EditText) {
             editText.addTextChangedListener(object : TextWatcher {
                 private var isEditing = false
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
                     if (isEditing) return
 
+                    var firstUpdate = true
                     isEditing = true
+
 
                     val cleanString = s.toString().replace(Regex("[R$,.]"), "").trim()
 
@@ -78,7 +87,6 @@ class FinancesFormatter {
                     }
 
                     isEditing = false
-
                 }
             })
         }
@@ -92,6 +100,5 @@ class FinancesFormatter {
         }
 
     }
-
 
 }

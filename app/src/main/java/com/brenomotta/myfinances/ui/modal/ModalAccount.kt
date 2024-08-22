@@ -34,7 +34,7 @@ class ModalAccount(
         }
 
         // Adicionar TextWatcher para formatar o EditText
-        FinancesFormatter.maskMonetaryValue(binding.editAccountValue)
+//        FinancesFormatter.maskMonetaryValue(binding.editAccountValue)
 
         if (id != null) {
             val account = viewModel.getAccount(id)

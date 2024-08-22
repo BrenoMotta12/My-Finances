@@ -48,11 +48,7 @@ class TransactionsFragment : Fragment(), View.OnClickListener, AdapterView.OnIte
         adapter.attachContext(requireContext())
         adapter.attachListener(object : RecyclerListener {
 
-            override fun onListClick(id: Int) {
-                val intent = Intent(context, TransactionFormActivity::class.java)
-                intent.putExtra(FinancesConstants.BUNDLE.ID, id)
-                startActivity(intent)
-            }
+            override fun onListClick(id: Int) {}
 
             override fun onDeleteClick(id: Int) {
                 viewModel.delete(id)
